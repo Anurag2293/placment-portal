@@ -1,0 +1,129 @@
+<%- include('partials/header') %>
+
+<div class="container">
+
+    <h1> Applications </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">GSTIN</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Select</th>
+                <th scope="col">Reject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(pendingCompanies.length != 0){ %>
+                <% for(let i=0; i<pendingCompanies.length; i++){  %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= pendingCompanies[i].companyName %>
+                        </td>
+                        <td>
+                            <%= pendingCompanies[i].companyEmail %>
+                        </td>
+                        <td>
+                            <%= pendingCompanies[i].gstNo %>
+                        </td>
+                        <td>
+                            <%= pendingCompanies[i].domain %>
+                        </td>
+                        <form action='/admin/changes' method='post'>
+                            <td>
+                                <input type="radio" name="selection" value="1">
+                            </td>
+                            <td>
+                                <input type="radio" name="selection" value="-1">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary" name="companyEmail" value=<%= pendingCompanies[i].companyEmail %> >Save Changes</button>
+                            </td>
+                        </form>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+    <h1> Accepted Companies </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">GSTIN</th>
+                <th scope="col">Domain</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(acceptedCompanies.length != 0){  %>
+                <% for(let i=0; i<acceptedCompanies.length; i++){  %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= acceptedCompanies[i].companyName %>
+                        </td>
+                        <td>
+                            <%= acceptedCompanies[i].companyEmail %>
+                        </td>
+                        <td>
+                            <%= acceptedCompanies[i].gstNo %>
+                        </td>
+                        <td>
+                            <%= acceptedCompanies[i].domain %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } %>
+            
+        </tbody>
+    </table>
+
+    <h1> Rejected Companies </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">GSTIN</th>
+                <th scope="col">Domain</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(rejectedCompanies.length != 0){  %>
+                <% for(let i=0; i<rejectedCompanies.length; i++){  %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= rejectedCompanies[i].companyName %>
+                        </td>
+                        <td>
+                            <%= rejectedCompanies[i].companyEmail %>
+                        </td>
+                        <td>
+                            <%= rejectedCompanies[i].gstNo %>
+                        </td>
+                        <td>
+                            <%= rejectedCompanies[i].domain %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+</div>
+
+<%- include('partials/footer') %>

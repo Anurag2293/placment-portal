@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+
+<div class="container"> 
+    <h1>Welcome, <%= name %>!</h1>
+
+    <br>
+
+    <div class="container text-center mt-5">
+        <div class="row">
+          <div class="col pd-5">
+            <!-- <form action="/student/apply" method="GET">
+                <button type="button" class="btn btn-primary btn-lg" width="30" height="30">Apply</button>
+            </form> -->
+
+            <form action="/student/apply" method="GET">
+                <button class="btn btn-primary btn-lg">Apply</button>
+            </form>
+          </div>
+          <div class="col pd-5">
+            <button type="button" class="btn btn-primary btn-lg">Status</button>
+          </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <div class="row">
+          <div class="col pd-5">
+            <button type="button" class="btn btn-primary btn-lg">Resources</button>
+          </div>
+          <div class="col pd-5">
+            <button type="button" class="btn btn-primary btn-lg">History</button>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('partials/footer') %>

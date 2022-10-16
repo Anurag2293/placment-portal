@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+
+<% if(status === 0){ %>
+    <div class="container">
+        <h1>
+            Welcome <%= name %>, Your application is under consideration.
+        </h1>
+    </div>
+<% } else if(status >= 1){ %>
+    <div class="container">
+        <h1>
+            Greetings <%= name %>, Your application is accepted.
+        </h1>
+    </div>
+<% } else {%>
+    <div class="container">
+        <h1>
+            Greetings <%= name %>, We are sorry to inform, your application has been rejected.
+        </h1>
+    </div>
+<% } %>
+
+
+
+<%- include('partials/footer') %>

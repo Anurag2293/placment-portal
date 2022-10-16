@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    
+    <% if(companyMessage !='' ) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= companyMessage %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="card mx-auto pt-4 pb-5" style="width: 18rem;"> 
+        <form class="mx-auto " action='/company' method='post'>
+            <div class="mb-3">
+                <label for="username" class="form-label">Registered Email</label>
+                <input type="email" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        
+        <div class="container mx-auto mt-5 ">
+            <div class="d-inline p-2">New recruiting?</div>
+            <form class="d-inline" action="/company/signup" method="get">
+                <button class="btn btn-primary d-inline">SignUp</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<%- include('partials/footer') %>

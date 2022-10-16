@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <% if(adminMessage !='' ) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= adminMessage %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+
+    <div class="card mx-auto pt-4 pb-5" style="width: 18rem;"> 
+        <form class="mx-auto " action='/admin' method='post'>
+            <div class="mb-3">
+                <label for="adminUsername" class="form-label">Admin Username</label>
+                <input type="email" class="form-control" name="adminUsername" required>
+            </div>
+            <div class="mb-3">
+                <label for="adminPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" name="adminPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login Securely</button>
+        </form>
+    </div>
+</div>
+
+
+<%- include('partials/footer') %>

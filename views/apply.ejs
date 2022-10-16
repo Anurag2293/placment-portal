@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Job Description</th>
+            <th scope="col">Register Here</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(companies.length != 0){  %>
+                <% for(let i=0; i<companies.length; i++){  %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= companies[i].companyName %>
+                        </td>
+                        <td>
+                            <%= companies[i].jobDescription %>
+                        </td>
+                        <td>
+                            <a href="https://www.w3schools.com">Click Here</a>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer') %>

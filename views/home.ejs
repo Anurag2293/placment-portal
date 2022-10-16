@@ -1,0 +1,58 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <!-- <h1>My App</h1> -->
+    <% if(success !='' ) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="card mx-auto pt-4 pb-5" style="width: 18rem;">
+        <form class="mx-auto " action='/' method='post'>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="Number" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Student Login</button>
+        </form>
+        
+        <div class="container mx-auto mt-5 ">
+            <div class="d-inline p-2">Not registered?</div>
+            <form class="d-inline" action="/signup" method="get">
+                <button class="btn btn-primary d-inline">SignUp</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <div class="d-inline p-2">Admin Access</div>
+            <form class="d-inline p-2" action="/admin" method="get">
+                <button class="btn btn-primary d-inline">Admin Login</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="container mx-auto">
+            <div class="d-inline p-2">Are you recruiting?</div>
+            <form class="d-inline" action="/company" method="get">
+                <button class="btn btn-primary d-inline">Click Here</button>
+            </form>
+        </div> 
+    </div>
+    
+</div>
+
+<%- include('partials/footer') %>
+
+<!-- <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div> -->
