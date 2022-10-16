@@ -12,6 +12,20 @@
         <h1>
             Greetings <%= name %>, Your application is accepted.
         </h1>
+        <p> Please fill in your details </p>
+
+        
+        <form action='/company/date' method='post'>
+            <div class="mb-3 w-25">
+              <label for="registerDate" class="form-label">Registration dealine Date</label>
+              <input type="date" class="form-control" id="registerDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+
     </div>
 <% } else {%>
     <div class="container">

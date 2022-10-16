@@ -1,13 +1,16 @@
 <%- include('partials/header') %>
 
 <div class="container">
+    <h2>Apply for companies here!</h2>
+    <p> <%= rollNo %></p>
     <table class="table">
         <thead>
             <tr>
             <th scope="col">S.No.</th>
             <th scope="col">Company Name</th>
             <th scope="col">Job Description</th>
-            <th scope="col">Register Here</th>
+            <th scope="col">Min CGPA</th>
+            <th scope="col">Apply Here</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +27,13 @@
                             <%= companies[i].jobDescription %>
                         </td>
                         <td>
-                            <a href="https://www.w3schools.com">Click Here</a>
+                            <%= companies[i].minCGPA %>
+                        </td>
+                        <td>
+                            <form action="/student/apply/company" method="post">
+                                <input type="hidden" value="<%= companies[i].companyEmail %>" name="companyEmail">
+                                <button type="submit" class="btn btn-primary" value="<%= rollNo %>" name="studentRoll">Apply</button>
+                            </form>
                         </td>
                     </tr>
                 <% } %>

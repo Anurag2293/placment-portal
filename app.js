@@ -28,17 +28,17 @@ const studentSchema = new mongoose.Schema({
     phoneNumber: Number,
     branch: String,
     Gender: String,
-    emailID: String
+    emailID: String,
+    companiesApplied: {
+        type: [String],
+        default: []
+    }
 });
 
 const companySchema = new mongoose.Schema({
     companyName: String,
     companyEmail: String,
     password: String,
-    contactNumber: {
-        type: Number,
-        default: 000000
-    },
     branches: {
         type: String,
         default: 'All Branches'
@@ -58,6 +58,18 @@ const companySchema = new mongoose.Schema({
     status: {
         type: Number,
         default: 0
+    },
+    date: {
+        type: Date,
+        default: new Date
+    },
+    minCGPA: {
+        type: mongoose.Types.Decimal128,
+        default: 6.0
+    },
+    appliedStudents: {
+        type: [Number],
+        default: []
     }
 })
 
@@ -131,9 +143,9 @@ app.post('/', (req, res) => {
             if (foundStud) {
                 bcrypt.compare(enteredPassword, foundStud.password, (compareError, result)=>{
                     if(result === true){
-                        console.log("Correct Password");
                         res.render('student', {
-                            name: foundStud.name
+                            name: foundStud.name,
+                            rollNo: foundStud.rollNo
                         });
                     } else {
                         res.render('home', {
@@ -150,7 +162,20 @@ app.post('/', (req, res) => {
     });
 });
 
-app.get('/student/apply', (req, res) => {
+app.post('/student/apply', (req, res) => {
+    Company.find({status: 1}, (companiesfoundError, companies) => {
+        if(companiesfoundError) {
+            console.log(companiesfoundError);
+        } else {
+            res.render('apply', {
+                companies: companies,
+                rollNo: req.body.rollNumber
+            });
+        }
+    })
+})
+
+app.get('/student/History', (req, res) => {
     Company.find({status: 1}, (companiesfoundError, companies) => {
         if(companiesfoundError) {
             console.log(companiesfoundError);
@@ -160,9 +185,26 @@ app.get('/student/apply', (req, res) => {
             });
         }
     })
+})
 
+app.post('/student/apply/company', (req, res) => {
+    console.log(req.body);
+    const studentRoll = Number.parseInt(req.body.studentRoll);
+    const companyEmail = req.body.companyEmail;
 
-    // res.render('apply');
+    Company.update(
+        {companyEmail: companyEmail},
+        { $push: { companiesApplied: companyEmail } },
+        done
+    );
+
+    Student.update(
+        {rollNo: studentRoll},
+        { $push: { appliedStudents: studentRoll } },
+        done
+    );
+
+    res.render('apply')
 })
 
 // Company
@@ -189,8 +231,8 @@ app.post('/company', (req, res) => {
                         console.log("Correct Password");
                         res.render('company', {
                             name: foundCompany.companyName,
-                            status: foundCompany.status
-                            // status: -1
+                            status: foundCompany.status,
+
                         });
                     } else {
                         res.render('home', {
@@ -227,6 +269,11 @@ app.post('/company/signup', (req, res) => {
                         companyName: req.body.companyName,
                         companyEmail: req.body.companyEmail,
                         password: hash,
+                        jobDescription: req.body.jobDescription,
+                        branches: req.body.branch,
+                        gstNO: req.body.gstinNum,
+                        domain: req.body.Domain,
+                        minCGPA: req.body.mincgpa
                     });
                     newCompany.save((saveError) => {
                         if (saveError) {
@@ -296,7 +343,7 @@ app.post('/admin/changes', async (req, res) => {
 
     let doc = await Company.findOneAndUpdate({companyEmail: companyEmail}, {status: finalStatus});
 
-    console.log(doc.status);
+    // console.log(doc.status);
 
     Company.find({status: 0}, (companiesfoundError, pendingCompanies) => {
         Company.find({status: -1}, (rejectfoundError, rejectedCompanies) =>{
@@ -321,7 +368,6 @@ app.post('/admin/changes', async (req, res) => {
             })
         })
     })
-
 
 })
 

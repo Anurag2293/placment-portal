@@ -24,8 +24,8 @@
                             <input type="password" class="form-control" name="password" required>
                         </div>
                          <div class="form-group mt-4">
-                            <label for="GSTIN Number">GSTIN Number</label>
-                            <input type="password" class="form-control" name="gstinNum" required>
+                            <label for="gstinNum">GSTIN Number</label>
+                            <input type="text" class="form-control" name="gstinNum" required>
                         </div>
 
 
@@ -41,10 +41,10 @@
                         <div class="form-group mt-3">
                             <select class="form-select mt-4" name="Domain" required>
                                 <option selected>Domain</option>
-                                <option value="1">SDE</option>
-                                <option value="2">CS/IT</option>
-                                <option value="3">Data Analytics</option>
-                                <option value="4">core</option>
+                                <option value="SDE">SDE</option>
+                                <option value="CS/IT">CS/IT</option>
+                                <option value="Data Analytics">Data Analytics</option>
+                                <option value="core">core</option>
                             </select>
                         </div>                        
 
@@ -55,8 +55,8 @@
                             <input type="Number" step="any" class="form-control" name="mincgpa" required>
                         </div>
                         <div class="form group mt-3"  >
-                            <label for="floatingTextarea mt-3">Job Description </label>
-                            <textarea class="form-control" rows = "5" placeholder="Enter the job description here" id="floatingTextarea"></textarea>
+                            <label for="jobDescription">Job Description </label>
+                            <textarea class="form-control" rows = "5" placeholder="Enter the job description here" name="jobDescription"></textarea>
                           </div>
 
                         <button type="submit" class="btn btn-primary mt-3">SignUp</button>

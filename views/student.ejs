@@ -3,18 +3,15 @@
 
 <div class="container"> 
     <h1>Welcome, <%= name %>!</h1>
+    <p> <%= rollNo %>
 
     <br>
 
     <div class="container text-center mt-5">
         <div class="row">
           <div class="col pd-5">
-            <!-- <form action="/student/apply" method="GET">
-                <button type="button" class="btn btn-primary btn-lg" width="30" height="30">Apply</button>
-            </form> -->
-
-            <form action="/student/apply" method="GET">
-                <button class="btn btn-primary btn-lg">Apply</button>
+            <form action="/student/apply" method="post">
+                <button type="submit" class="btn btn-primary btn-lg" value="<%= rollNo %>" name="rollNumber">Apply</button>
             </form>
           </div>
           <div class="col pd-5">
@@ -26,7 +23,7 @@
     <div class="container text-center mt-5">
         <div class="row">
           <div class="col pd-5">
-            <button type="button" class="btn btn-primary btn-lg">Resources</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href= 'https://drive.google.com/drive/folders/1idwaMgnMR3_csCutTnYNu6qN-JiOwamp' " target="_blank">Resources</button>
           </div>
           <div class="col pd-5">
             <button type="button" class="btn btn-primary btn-lg">History</button>
